@@ -29,3 +29,11 @@ copy("copy_old_sign_update") {
     "$root_out_dir/old_dsa_scripts/{{source_file_part}}",
   ]
 }
+
+action("tar_sparkle_binaries") {
+  script="tar_sparkle_binaries.py"
+
+  outputs = [ "$root_out_dir/sparkle_binaries.tar.gz" ]
+
+  deps = [ ":build_sparkle_framework" ]
+}

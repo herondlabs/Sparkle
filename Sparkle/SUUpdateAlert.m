@@ -315,6 +315,11 @@ static NSString *const SUUpdateAlertTouchBarIndentifier = @"" SPARKLE_BUNDLE_IDE
     // We display a slightly different summary depending on if it's an "info-only" item or not
     NSString *finalString = nil;
 
+    // https://github.com/herondlabs/herond-browser/issues/42
+    // hide majorVersion from chromium
+    NSString *majorVersion = [[hostVersion componentsSeparatedByString:@"."] objectAtIndex:0];
+    hostVersion = [hostVersion substringFromIndex:(majorVersion.length + 1)];
+
     if (self.updateItem.isInformationOnlyUpdate) {
         finalString = [NSString stringWithFormat:SULocalizedString(@"%@ %@ is now available--you have %@. Would you like to learn more about this update on the web?", @"Description text for SUUpdateAlert when the update informational with no download."), self.host.name, updateItemVersion, hostVersion];
     } else {
